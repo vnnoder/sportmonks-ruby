@@ -13,6 +13,13 @@ class Sportmonks::Api
     else
       resp
     end
+  rescue NoMethodError
+    raise ArgumentError, """
+    Please configure an api token
+    Sportmonks.configure do |config|
+      config.api_token = 'your_api_key'
+    end
+    """
   end
 
   def self.headers()

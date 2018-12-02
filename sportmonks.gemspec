@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'sportmonks'
-  s.version     = '0.1.0'
+  s.version     = '0.2.0'
   s.date        = '2018-12-02'
   s.summary     = "A Ruby Client for Sportmonks Soccer API"
   s.description = "A Ruby Client for Sportmonks Soccer API 2.0 at https://www.sportmonks.com/products/soccer/docs/2.0"
