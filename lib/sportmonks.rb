@@ -155,8 +155,8 @@ module Sportmonks
       Sportmonks::Api.api_get("/venues/season/#{season_id}", options)
     end
 
-    def round(id)
-      Sportmonks::Api.api_get("/rounds/#{id}")
+    def round(id, options = {})
+      Sportmonks::Api.api_get("/rounds/#{id}", options)
     end
 
     def rounds_by_season(season_id, options = {})
