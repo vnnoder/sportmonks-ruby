@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sportmonks
   class << self
     attr_accessor :configuration
@@ -8,7 +10,7 @@ module Sportmonks
     end
 
     def continents(options = {})
-      Sportmonks::Api.api_get("/continents", options)
+      Sportmonks::Api.api_get('/continents', options)
     end
 
     def continent(id, options = {})
@@ -16,7 +18,7 @@ module Sportmonks
     end
 
     def countries(options = {})
-      Sportmonks::Api.api_get("/countries", options)
+      Sportmonks::Api.api_get('/countries', options)
     end
 
     def country(id, options = {})
@@ -24,7 +26,7 @@ module Sportmonks
     end
 
     def leagues(options = {})
-      Sportmonks::Api.api_get("/leagues", options)
+      Sportmonks::Api.api_get('/leagues', options)
     end
 
     def league(id, options = {})
@@ -32,7 +34,7 @@ module Sportmonks
     end
 
     def seasons(options = {})
-      Sportmonks::Api.api_get("/seasons", options)
+      Sportmonks::Api.api_get('/seasons', options)
     end
 
     def season(id, options = {})
@@ -44,7 +46,7 @@ module Sportmonks
     end
 
     def fixtures(ids, options = {})
-      ids_param = ids.join(",")
+      ids_param = ids.join(',')
       Sportmonks::Api.api_get("/fixtures/multi/#{ids_param}", options)
     end
 
@@ -61,7 +63,7 @@ module Sportmonks
       if leagues_param
         Sportmonks::Api.api_get(
           "/fixtures/between/#{from_str}/#{to_str}",
-          options.merge({leagues: leagues_param})
+          options.merge(leagues: leagues_param)
         )
       else
         Sportmonks::Api.api_get("/fixtures/between/#{from_str}/#{to_str}", options)
@@ -76,7 +78,7 @@ module Sportmonks
       if leagues_param
         Sportmonks::Api.api_get(
           "/fixtures/between/#{from_str}/#{to_str}/#{team_id}",
-          options.merge({leagues: leagues_param})
+          options.merge(leagues: leagues_param)
         )
       else
         Sportmonks::Api.api_get("/fixtures/between/#{from_str}/#{to_str}/#{team_id}", options)
@@ -95,9 +97,9 @@ module Sportmonks
       leagues_param = format_league_ids(league_ids)
 
       if leagues_param
-        Sportmonks::Api.api_get("/livescores", options.merge({leagues: leagues_param}))
+        Sportmonks::Api.api_get('/livescores', options.merge(leagues: leagues_param))
       else
-        Sportmonks::Api.api_get("/livescores", options)
+        Sportmonks::Api.api_get('/livescores', options)
       end
     end
 
@@ -105,9 +107,9 @@ module Sportmonks
       leagues_param = format_league_ids(league_ids)
 
       if leagues_param
-        Sportmonks::Api.api_get("/livescores/now", options.merge({leagues: leagues_param}))
+        Sportmonks::Api.api_get('/livescores/now', options.merge(leagues: leagues_param))
       else
-        Sportmonks::Api.api_get("/livescores/now", options)
+        Sportmonks::Api.api_get('/livescores/now', options)
       end
     end
 
@@ -116,7 +118,7 @@ module Sportmonks
     end
 
     def highlights(options = {})
-      Sportmonks::Api.api_get("/highlights", options)
+      Sportmonks::Api.api_get('/highlights', options)
     end
 
     def head_2_head(team1_id, team2_id, options = {})
@@ -163,20 +165,20 @@ module Sportmonks
       Sportmonks::Api.api_get("/rounds/season/#{season_id}", options)
     end
 
-    def odds_by_fixure_and_bookmaker(fixture_id, bookmaker_id, options = {})
+    def odds_by_fixture_and_bookmaker(fixture_id, bookmaker_id, options = {})
       Sportmonks::Api.api_get("odds/fixture/#{fixture_id}/bookmaker/#{bookmaker_id}", options)
     end
 
-    def odds_by_fixure(fixture_id, options = {})
+    def odds_by_fixture(fixture_id, options = {})
       Sportmonks::Api.api_get("odds/fixture/#{fixture_id}", options)
     end
 
-    def odds_by_fixure_and_market(fixture_id, market_id, options = {})
+    def odds_by_fixture_and_market(fixture_id, market_id, options = {})
       Sportmonks::Api.api_get("odds/fixture/#{fixture_id}/market/#{market_id}", options)
     end
 
     def bookmakers(options = {})
-      Sportmonks::Api.api_get("bookmakers", options)
+      Sportmonks::Api.api_get('bookmakers', options)
     end
 
     def bookmaker(bookmaker_id, options = {})
@@ -184,7 +186,7 @@ module Sportmonks
     end
 
     def markets(options = {})
-      Sportmonks::Api.api_get("markets", options)
+      Sportmonks::Api.api_get('markets', options)
     end
 
     def market(market_id, options = {})
@@ -192,7 +194,7 @@ module Sportmonks
     end
 
     # notice that this api is for bet365 only
-    def in_play_odds_by_fixure(fixture_id, options = {})
+    def in_play_odds_by_fixture(fixture_id, options = {})
       Sportmonks::Api.api_get("odds/inplay/fixture/#{fixture_id}", options)
     end
 
@@ -211,15 +213,11 @@ module Sportmonks
     private
 
     def format_date(date)
-      date.strftime("%Y-%m-%d")
+      date.strftime('%Y-%m-%d')
     end
 
     def format_league_ids(league_ids)
-      if league_ids.size > 0
-        league_ids.join(",")
-      else
-        nil
-      end
+      league_ids.join(',') unless league_ids.empty?
     end
   end
 end
