@@ -10,5 +10,5 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://rubygems.org/gems/sportmonks'
   s.license       = 'MIT'
-  s.add_runtime_dependency 'httparty', '0.16'
+  s.add_runtime_dependency 'httparty', '>= 0.16'
 end
